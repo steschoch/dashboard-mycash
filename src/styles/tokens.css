@@ -1,0 +1,73 @@
+:root {
+  /* Variáveis Semânticas - Cores */
+  --color-primary: #000000; /* Será mapeado do Figma */
+  --color-secondary: #808080; /* Será mapeado do Figma */
+  --color-success: #00ff00; /* Será mapeado do Figma */
+  --color-error: #ff0000; /* Será mapeado do Figma */
+  --color-warning: #ffaa00; /* Será mapeado do Figma */
+  --color-info: #0066ff; /* Será mapeado do Figma */
+  --color-bg: #ffffff; /* Será mapeado do Figma */
+  --color-bg-secondary: #f5f5f5; /* Será mapeado do Figma */
+  --color-text-primary: #000000; /* Será mapeado do Figma */
+  --color-text-secondary: #666666; /* Será mapeado do Figma */
+  --color-border: #e5e5e5; /* Será mapeado do Figma */
+  --color-border-hover: #cccccc; /* Será mapeado do Figma */
+
+  /* Variáveis Primitivas - Cores Gray */
+  --gray-50: #fafafa;
+  --gray-100: #f5f5f5;
+  --gray-200: #e5e5e5;
+  --gray-300: #d4d4d4;
+  --gray-400: #a3a3a3;
+  --gray-500: #737373;
+  --gray-600: #525252;
+  --gray-700: #404040;
+  --gray-800: #262626;
+  --gray-900: #171717;
+
+  /* Variáveis Primitivas - Cores Lime */
+  --lime-50: #f7fee7;
+  --lime-100: #ecfccb;
+  --lime-200: #d9f99d;
+  --lime-300: #bef264;
+  --lime-400: #a3e635;
+  --lime-500: #84cc16;
+  --lime-600: #65a30d;
+  --lime-700: #4d7c0f;
+  --lime-800: #365314;
+  --lime-900: #1a2e05;
+
+  /* Variáveis Semânticas - Espaçamento */
+  --spacing-container: 1rem; /* Será mapeado do Figma */
+  --spacing-section: 2rem; /* Será mapeado do Figma */
+  --spacing-card: 1.5rem; /* Será mapeado do Figma */
+  --spacing-page: 1rem; /* Será mapeado do Figma */
+
+  /* Variáveis Primitivas - Espaçamento */
+  --spacing-xs: 0.25rem; /* 4px */
+  --spacing-sm: 0.5rem; /* 8px */
+  --spacing-md: 1rem; /* 16px */
+  --spacing-lg: 1.5rem; /* 24px */
+  --spacing-xl: 2rem; /* 32px */
+  --spacing-2xl: 3rem; /* 48px */
+
+  /* Variáveis Semânticas - Tipografia */
+  --font-heading: system-ui, -apple-system, sans-serif; /* Será mapeado do Figma */
+  --font-body: system-ui, -apple-system, sans-serif; /* Será mapeado do Figma */
+  --font-weight-normal: 400;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+
+  /* Variáveis Primitivas - Tipografia */
+  --font-size-xs: 0.75rem; /* 12px */
+  --font-size-sm: 0.875rem; /* 14px */
+  --font-size-base: 1rem; /* 16px */
+  --font-size-lg: 1.125rem; /* 18px */
+  --font-size-xl: 1.25rem; /* 20px */
+  --font-size-2xl: 1.5rem; /* 24px */
+
+  /* Variáveis Primitivas - Line Height */
+  --line-height-tight: 1.25;
+  --line-height-normal: 1.5;
+  --line-height-relaxed: 1.75;
+}
