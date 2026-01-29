@@ -80,6 +80,11 @@ html {
   scroll-behavior: smooth;
 }
 
+/* Sidebar: tooltip ao hover no item (estado colapsado) */
+.sidebar-nav-link:hover .sidebar-nav-tooltip {
+  opacity: 1;
+}
+
 /* Prefer reduced motion */
 @media (prefers-reduced-motion: reduce) {
   *,

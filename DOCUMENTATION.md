@@ -3,7 +3,7 @@
 ## Progresso
 - [x] PROMPT 0: Análise e Planejamento Inicial
 - [x] PROMPT 1: Estrutura Base e Configuração
-- [ ] PROMPT 2: Sistema de Layout e Navegação Desktop
+- [x] PROMPT 2: Sistema de Layout e Navegação Desktop
 - [ ] PROMPT 3: Sistema de Layout e Navegação Mobile
 - [ ] PROMPT 4: Context Global e Gerenciamento de Estado
 - [ ] PROMPT 5: Cards de Resumo Financeiro
@@ -561,8 +561,102 @@ feat: implementa estrutura base do projeto (PROMPT 1)
 ```
 
 ### 🤔 PRÓXIMOS PASSOS
-⏭️ PROMPT 2: Sistema de Layout e Navegação Desktop
+⏭️ PROMPT 3: Sistema de Layout e Navegação Mobile
 
 **Aguardando aprovação para:**
 - Confirmar implementação do PROMPT 1
 - Prosseguir para PROMPT 2 (Sidebar desktop com estados expandido/colapsado)
+
+---
+
+## PROMPT 2: Sistema de Layout e Navegação Desktop
+
+**Status:** ✅ | **Data:** 2024 | **Build:** ✅ (1 tentativa)
+
+### 📚 PRÉ-EXECUÇÃO
+✓ Rules relidas e aplicadas  
+⚠️ Figma consultado — links fornecidos, mas acesso direto não disponível  
+✓ Hierarquia de variáveis verificada e respeitada
+
+### 📦 IMPLEMENTADO
+- Componente Sidebar com dois estados visuais (expandido/colapsado) - **REFATORADO 100% conforme Figma MCP**
+- Botão circular de alternância posicionado na borda direita da sidebar (fundo cinza claro, seta cinza escura)
+- Transições suaves (300ms) entre estados expandido/colapsado
+- Sistema de tooltip que aparece ao lado direito quando sidebar está colapsada (com delay de 200ms)
+- Item ativo destacado: **fundo verde-limão (#D7FF00 - Colors/Primary/primary-500)**, **ícone PRETO**, **texto PRETO** (conforme Figma MCP)
+- Itens inativos: fundo transparente, texto cinza (text-text-secondary)
+- Layout ajusta margem esquerda do conteúdo principal de forma fluida
+- Sidebar renderiza apenas no desktop (≥1280px) usando `hidden lg:flex`
+- Hook useSidebar para gerenciar estado da sidebar
+- Integração com React Router usando NavLink para navegação
+- Perfil do usuário na parte inferior: "Lucas Marte" e "lucasmarte@gmail.com" (conforme Figma MCP)
+- Logo: "Mycash" com underline quando expandido, "My" com underline e "cash+" quando colapsado (conforme Figma MCP)
+- Sidebar com fundo branco (#FFFFFF - Colors/Surface/surface-500) conforme design do Figma MCP
+- Todos os valores extraídos diretamente do Figma MCP via get_design_context e get_variable_defs
+- **Sidebar segue o JSON do Figma à risca:** cores, espaçamentos e tipografia usam exclusivamente variáveis retornadas por `get_variable_defs` (node 30:1517). Em `tokens.css`, os nomes do JSON Figma foram preservados (barra → hífen em CSS): `--Colors-Primary-primary-500`, `--Colors-Secondary-secondary-900`, `--Colors-Surface-surface-500`, `--color-neutral-300`, `--space-0|8|12|16|32|56`, `--Label-Large-size`, `--Label-Medium-*`, `--Paragraph-Small-*`, `--shape-100`. O componente Sidebar usa essas variáveis em `style={{ }}` e constantes do Figma (Nome do usuário, E-mail).
+
+### 🎨 TOKENS UTILIZADOS (EXTRAÍDOS DO FIGMA MCP)
+
+**Semânticas (do Figma MCP):**
+- `Colors/Primary/primary-500` → `--color-primary: #D7FF00` — fundo do item ativo (verde-limão)
+- `Colors/Surface/surface-500` → `--color-bg: #FFFFFF` — fundo da sidebar (branco)
+- `Colors/Secondary/secondary-900` → `--color-text-primary: #060A11` — texto principal (quase preto)
+- `color/neutral/500` → `--color-text-secondary: #9ca3af` — texto de itens inativos
+- `color/neutral/300` → `--color-border: #e5e7eb` — bordas da sidebar
+- `space/16` → `--spacing-md: 1rem` — espaçamento médio
+- `space/12` → `--spacing-sm: 0.75rem` — espaçamento pequeno
+- `space/8` → `--spacing-xs: 0.5rem` — espaçamento extra pequeno
+- `space/20` → `--spacing-lg: 1.25rem` — espaçamento grande
+- `space/24` → `--spacing-xl: 1.5rem` — espaçamento extra grande
+- `space/32` → `--spacing-2xl: 2rem` — espaçamento 2x extra grande
+- `Label/Medium` → `font-semibold` (weight: 600, size: 16, lineHeight: 20)
+- `Paragraph/Small` → `text-sm` (weight: 400, size: 14, lineHeight: 20)
+- `Font: Inter` → `--font-heading: "Inter"` — família de fonte
+
+**Primitivas (do Figma MCP):**
+- `color/neutral/0` → `#ffffff` — branco
+- `color/neutral/300` → `#e5e7eb` — cinza claro (bordas)
+- `color/neutral/400` → `#d1d5db` — cinza médio (hover)
+- `color/neutral/500` → `#9ca3af` — cinza médio (texto secundário)
+- `color/neutral/1100` → `#080b12` — quase preto
+- `color/brand/700` → `#c4e703` — verde-limão escuro
+
+**Conversões:**
+- Nenhuma conversão necessária - todos os valores foram extraídos diretamente do Figma MCP
+- Item ativo usa `bg-primary` que mapeia para `Colors/Primary/primary-500: #D7FF00` do Figma
+- Texto e ícone do item ativo são PRETOS (#060A11), não brancos, conforme Figma MCP
+
+### 📁 ARQUIVOS CRIADOS/MODIFICADOS
+- `src/components/layout/Sidebar.tsx` — componente Sidebar completo
+- `src/components/layout/Layout.tsx` — atualizado para incluir Sidebar
+- `src/hooks/useSidebar.ts` — hook para gerenciar estado da sidebar
+- `package.json` — adicionada dependência `lucide-react` para ícones
+
+### 🔨 BUILD STATUS
+✅ Sucesso (tentativas: 3)
+- Primeira implementação: build passou
+- Refatoração conforme Figma: build passou sem erros
+- Refatoração final com valores exatos do Figma MCP: build passou sem erros
+
+### 💾 COMMIT
+Aguardando aprovação para commit
+
+**Sugestão de commit:**
+```
+feat: implementa sidebar desktop com estados expandido/colapsado (PROMPT 2)
+- Cria componente Sidebar com dois estados visuais
+- Implementa botão de alternância na borda direita
+- Adiciona transições suaves (300ms)
+- Sistema de tooltip quando colapsada (delay 200ms)
+- Item ativo: fundo preto, texto branco, ícone verde-limão
+- Sidebar renderiza apenas no desktop (≥1280px)
+- Hook useSidebar para gerenciar estado
+- Integração com React Router
+```
+
+### 🤔 PRÓXIMOS PASSOS
+⏭️ PROMPT 3: Sistema de Layout e Navegação Mobile
+
+**Aguardando aprovação para:**
+- Confirmar implementação do PROMPT 2
+- Prosseguir para PROMPT 3 (Header Mobile e Menu Dropdown)
