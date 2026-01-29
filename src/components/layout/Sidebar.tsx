@@ -43,6 +43,7 @@ export default function Sidebar() {
         backgroundColor: 'var(--Colors-Surface-surface-500)',
         borderRight: '1px solid var(--color-neutral-300)',
         transition: 'width 300ms ease-in-out',
+        overflow: 'visible',
       }}
     >
       <div
@@ -71,6 +72,7 @@ export default function Sidebar() {
         style={{
           flex: 1,
           overflowY: 'auto',
+          overflowX: 'hidden',
           display: 'flex',
           flexDirection: 'column',
           padding: 'var(--space-16)',
@@ -104,17 +106,31 @@ export default function Sidebar() {
                     justifyContent: isExpanded ? 'flex-start' : 'center',
                     borderRadius: 9999,
                     textDecoration: 'none',
+                    overflow: isExpanded ? undefined : 'hidden',
                   }}
                 >
                   {({ isActive }) => (
                     <>
                       <span
-                        style={{
-                          position: 'absolute',
-                          inset: 0,
-                          backgroundColor: isActive ? 'var(--Colors-Primary-primary-500)' : 'transparent',
-                          borderRadius: 9999,
-                        }}
+                        style={
+                          isExpanded
+                            ? {
+                                position: 'absolute',
+                                inset: 0,
+                                backgroundColor: isActive ? 'var(--Colors-Primary-primary-500)' : 'transparent',
+                                borderRadius: 9999,
+                              }
+                            : {
+                                position: 'absolute',
+                                left: '50%',
+                                top: '50%',
+                                transform: 'translate(-50%, -50%)',
+                                width: 44,
+                                height: 44,
+                                backgroundColor: isActive ? 'var(--Colors-Primary-primary-500)' : 'transparent',
+                                borderRadius: '50%',
+                              }
+                        }
                         aria-hidden
                       />
                       <span
@@ -126,10 +142,10 @@ export default function Sidebar() {
                           alignItems: 'center',
                           justifyContent: 'center',
                           color: 'var(--Colors-Secondary-secondary-900)',
-                          marginRight: isExpanded ? 'var(--space-16)' : 0,
+                          margin: isExpanded ? undefined : 0,
+                          marginRight: isExpanded ? 'var(--space-16)' : undefined,
                         }}
                       >
-                        {/* Removido o size literal para evitar erro de tipagem */}
                         <Icon className="size-5" />
                       </span>
                       {isExpanded && (
@@ -210,8 +226,8 @@ export default function Sidebar() {
         onClick={toggle}
         style={{
           position: 'absolute',
-          top: LOGO_AREA_HEIGHT_PX / 2 - 8,
           right: -8,
+          top: LOGO_AREA_HEIGHT_PX / 2 - 8,
           width: 16,
           height: 16,
           display: 'flex',
@@ -224,7 +240,7 @@ export default function Sidebar() {
           zIndex: 9999,
         }}
       >
-        {isExpanded ? <ChevronLeft className="size-2.5" /> : <ChevronRight className="size-2.5" />}
+        {isExpanded ? <ChevronLeft className="size-3" /> : <ChevronRight className="size-3" />}
       </button>
     </aside>
   );
