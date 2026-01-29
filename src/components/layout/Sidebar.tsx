@@ -1,5 +1,5 @@
 /**
- * Sidebar — design Figma MCP node 30:1516. Apenas elementos visuais: logo, nav, perfil (avatar + nome + email), toggle.
+ * Sidebar — design Figma MCP node 30:1516.
  */
 import { NavLink } from 'react-router-dom';
 import { useSidebar } from '@/hooks/useSidebar';
@@ -26,7 +26,6 @@ const navItems: NavItem[] = [
 
 const FIGMA_USER_NAME = 'Lucas Marte';
 const FIGMA_USER_EMAIL = 'lucasmarte@gmail.com';
-
 const LOGO_AREA_HEIGHT_PX = 56;
 
 export default function Sidebar() {
@@ -74,10 +73,7 @@ export default function Sidebar() {
           overflowY: 'auto',
           display: 'flex',
           flexDirection: 'column',
-          paddingTop: 'var(--space-16)',
-          paddingBottom: 'var(--space-16)',
-          paddingLeft: 'var(--space-16)',
-          paddingRight: 'var(--space-16)',
+          padding: 'var(--space-16)',
         }}
       >
         <ul
@@ -96,8 +92,7 @@ export default function Sidebar() {
               <li key={item.path}>
                 <NavLink
                   to={item.path}
-                  className="sidebar-nav-link"
-                  style={({ isActive }) => ({
+                  style={{
                     display: 'flex',
                     alignItems: 'center',
                     width: '100%',
@@ -109,9 +104,7 @@ export default function Sidebar() {
                     justifyContent: isExpanded ? 'flex-start' : 'center',
                     borderRadius: 9999,
                     textDecoration: 'none',
-                    border: 'none',
-                    boxShadow: 'none',
-                  })}
+                  }}
                 >
                   {({ isActive }) => (
                     <>
@@ -136,25 +129,27 @@ export default function Sidebar() {
                           marginRight: isExpanded ? 'var(--space-16)' : 0,
                         }}
                       >
-                        <Icon size={20} />
+                        {/* Removido o size literal para evitar erro de tipagem */}
+                        <Icon className="size-5" />
                       </span>
-                      <span
-                        style={{
-                          position: 'relative',
-                          zIndex: 10,
-                          display: isExpanded ? undefined : 'none',
-                          color: 'var(--Colors-Secondary-secondary-900)',
-                          fontSize: 'var(--Label-Medium-size)',
-                          fontWeight: 'var(--Label-Medium-weight)',
-                          lineHeight: 'var(--Label-Medium-lineHeight)',
-                          whiteSpace: 'nowrap',
-                          overflow: 'hidden',
-                        }}
-                      >
-                        {item.label}
-                      </span>
+                      {isExpanded && (
+                        <span
+                          style={{
+                            position: 'relative',
+                            zIndex: 10,
+                            color: 'var(--Colors-Secondary-secondary-900)',
+                            fontSize: 'var(--Label-Medium-size)',
+                            fontWeight: 'var(--Label-Medium-weight)',
+                            lineHeight: 'var(--Label-Medium-lineHeight)',
+                            whiteSpace: 'nowrap',
+                          }}
+                        >
+                          {item.label}
+                        </span>
+                      )}
                       {!isExpanded && (
                         <div
+                          className="sidebar-nav-tooltip"
                           style={{
                             position: 'absolute',
                             left: '100%',
@@ -162,17 +157,10 @@ export default function Sidebar() {
                             padding: 'var(--space-8) var(--space-12)',
                             backgroundColor: 'var(--Colors-Primary-primary-500)',
                             color: 'var(--Colors-Secondary-secondary-900)',
-                            fontSize: 'var(--Paragraph-Small-size)',
-                            fontWeight: 'var(--Label-Medium-weight)',
-                            lineHeight: 'var(--Paragraph-Small-lineHeight)',
-                            whiteSpace: 'nowrap',
                             borderRadius: 6,
-                            opacity: 0,
-                            pointerEvents: 'none',
                             zIndex: 60,
-                            transition: 'opacity 200ms ease',
+                            whiteSpace: 'nowrap',
                           }}
-                          className="sidebar-nav-tooltip"
                         >
                           {item.label}
                         </div>
@@ -186,64 +174,33 @@ export default function Sidebar() {
         </ul>
       </nav>
 
-      {/* Perfil — Figma 1-6879: compacto, sem linha separadora; avatar 28px, Label/Medium, Paragraph/Small, space/12 */}
       <div
         style={{
           marginTop: 'auto',
-          flexShrink: 0,
           display: 'flex',
           flexDirection: 'column',
           alignItems: isExpanded ? 'flex-start' : 'center',
-          gap: isExpanded ? 'var(--space-12)' : 0,
           padding: 'var(--space-12)',
+          gap: isExpanded ? 'var(--space-12)' : 0,
         }}
       >
         <div
           style={{
             width: 28,
             height: 28,
-            borderRadius: 'var(--shape-100)',
-            flexShrink: 0,
+            borderRadius: '50%',
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
-            overflow: 'hidden',
             backgroundColor: 'var(--color-neutral-300)',
           }}
         >
-          <User size={14} style={{ color: 'var(--Colors-Secondary-secondary-900)' }} />
+          <User className="size-3.5" style={{ color: 'var(--Colors-Secondary-secondary-900)' }} />
         </div>
         {isExpanded && (
           <div style={{ minWidth: 0, width: '100%' }}>
-            <p
-              style={{
-                margin: 0,
-                marginBottom: 4,
-                color: 'var(--Colors-Secondary-secondary-900)',
-                fontSize: 14,
-                lineHeight: 1.25,
-                fontWeight: 600,
-                overflow: 'hidden',
-                textOverflow: 'ellipsis',
-                whiteSpace: 'nowrap',
-              }}
-            >
-              {FIGMA_USER_NAME}
-            </p>
-            <p
-              style={{
-                margin: 0,
-                color: 'var(--Colors-Secondary-secondary-900)',
-                fontSize: 12,
-                fontWeight: 400,
-                lineHeight: 1.25,
-                overflow: 'hidden',
-                textOverflow: 'ellipsis',
-                whiteSpace: 'nowrap',
-              }}
-            >
-              {FIGMA_USER_EMAIL}
-            </p>
+            <p style={{ margin: 0, fontWeight: 600, fontSize: 14 }}>{FIGMA_USER_NAME}</p>
+            <p style={{ margin: 0, fontSize: 12 }}>{FIGMA_USER_EMAIL}</p>
           </div>
         )}
       </div>
@@ -260,21 +217,14 @@ export default function Sidebar() {
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',
-          padding: 0,
           border: '1px solid var(--color-neutral-300)',
-          borderRadius: 'var(--shape-100)',
+          borderRadius: '50%',
           backgroundColor: 'var(--Colors-Surface-surface-500)',
-          boxShadow: '0 1px 4px rgba(0, 0, 0, 0.06)',
-          zIndex: 9999,
           cursor: 'pointer',
+          zIndex: 9999,
         }}
-        aria-label={isExpanded ? 'Recolher sidebar' : 'Expandir sidebar'}
       >
-        {isExpanded ? (
-          <ChevronLeft size={10} style={{ color: 'var(--Colors-Secondary-secondary-900)' }} aria-hidden />
-        ) : (
-          <ChevronRight size={10} style={{ color: 'var(--Colors-Secondary-secondary-900)' }} aria-hidden />
-        )}
+        {isExpanded ? <ChevronLeft className="size-2.5" /> : <ChevronRight className="size-2.5" />}
       </button>
     </aside>
   );
